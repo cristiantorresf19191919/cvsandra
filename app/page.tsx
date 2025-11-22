@@ -1,65 +1,162 @@
-import Image from "next/image";
+'use client';
+
+import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
+import { Inter, Playfair_Display } from 'next/font/google';
+import { cvData } from '@/data/cvData';
+import Header from '@/components/Header';
+import BioSection from '@/components/BioSection';
+import WorkExperienceSection from '@/components/WorkExperienceSection';
+import Footer from '@/components/Footer';
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-playfair',
+  weight: ['400', '500', '600', '700'],
+});
+
+const theme = createTheme({
+  palette: {
+    mode: 'light',
+    primary: {
+      main: '#2d3748',
+      light: '#4a5568',
+      dark: '#1a202c',
+    },
+    secondary: {
+      main: '#667eea',
+      light: '#818cf8',
+      dark: '#4c51bf',
+    },
+    background: {
+      default: '#fafafa',
+      paper: '#ffffff',
+    },
+    text: {
+      primary: '#1a202c',
+      secondary: '#4a5568',
+    },
+    grey: {
+      50: '#f9fafb',
+      100: '#f3f4f6',
+      200: '#e5e7eb',
+      300: '#d1d5db',
+      400: '#9ca3af',
+      500: '#6b7280',
+      600: '#4b5563',
+      700: '#374151',
+      800: '#1f2937',
+      900: '#111827',
+    },
+  },
+  typography: {
+    fontFamily: inter.style.fontFamily,
+    h1: {
+      fontFamily: playfair.style.fontFamily,
+      fontWeight: 700,
+      letterSpacing: '-0.02em',
+      lineHeight: 1.2,
+    },
+    h2: {
+      fontFamily: playfair.style.fontFamily,
+      fontWeight: 600,
+      letterSpacing: '-0.01em',
+      lineHeight: 1.3,
+    },
+    h3: {
+      fontFamily: playfair.style.fontFamily,
+      fontWeight: 600,
+      letterSpacing: '-0.01em',
+      lineHeight: 1.4,
+    },
+    h4: {
+      fontFamily: playfair.style.fontFamily,
+      fontWeight: 600,
+      letterSpacing: '0em',
+      lineHeight: 1.4,
+    },
+    h5: {
+      fontWeight: 600,
+      letterSpacing: '0em',
+      lineHeight: 1.5,
+    },
+    h6: {
+      fontWeight: 600,
+      letterSpacing: '0.01em',
+      lineHeight: 1.5,
+    },
+    body1: {
+      letterSpacing: '0.01em',
+      lineHeight: 1.75,
+    },
+    body2: {
+      letterSpacing: '0.01em',
+      lineHeight: 1.6,
+    },
+  },
+  shape: {
+    borderRadius: 16,
+  },
+  shadows: [
+    'none',
+    '0 1px 3px rgba(0,0,0,0.05)',
+    '0 4px 6px rgba(0,0,0,0.05)',
+    '0 10px 15px rgba(0,0,0,0.08)',
+    '0 20px 25px rgba(0,0,0,0.1)',
+    '0 25px 50px rgba(0,0,0,0.12)',
+    '0 25px 50px rgba(0,0,0,0.12)',
+    '0 25px 50px rgba(0,0,0,0.12)',
+    '0 25px 50px rgba(0,0,0,0.12)',
+    '0 25px 50px rgba(0,0,0,0.12)',
+    '0 25px 50px rgba(0,0,0,0.12)',
+    '0 25px 50px rgba(0,0,0,0.12)',
+    '0 25px 50px rgba(0,0,0,0.12)',
+    '0 25px 50px rgba(0,0,0,0.12)',
+    '0 25px 50px rgba(0,0,0,0.12)',
+    '0 25px 50px rgba(0,0,0,0.12)',
+    '0 25px 50px rgba(0,0,0,0.12)',
+    '0 25px 50px rgba(0,0,0,0.12)',
+    '0 25px 50px rgba(0,0,0,0.12)',
+    '0 25px 50px rgba(0,0,0,0.12)',
+    '0 25px 50px rgba(0,0,0,0.12)',
+    '0 25px 50px rgba(0,0,0,0.12)',
+    '0 25px 50px rgba(0,0,0,0.12)',
+    '0 25px 50px rgba(0,0,0,0.12)',
+    '0 25px 50px rgba(0,0,0,0.12)',
+  ],
+  components: {
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundImage: 'none',
+        },
+      },
+    },
+  },
+});
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <div 
+        className={`${inter.variable} ${playfair.variable}`}
+        style={{ 
+          minHeight: '100vh', 
+          background: 'linear-gradient(180deg, #fafafa 0%, #f5f5f5 100%)',
+        }}
+      >
+        <Header contact={cvData.contact} />
+        <BioSection bio={cvData.bio} />
+        <WorkExperienceSection experiences={cvData.workExperience} />
+        <Footer />
+      </div>
+    </ThemeProvider>
   );
 }
