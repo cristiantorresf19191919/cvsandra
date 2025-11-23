@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import { Box, Typography, Container, Avatar } from '@mui/material';
-import { LinkedIn, Twitter, Instagram } from '@mui/icons-material';
 import { ContactInfo } from '@/types/cv';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -75,7 +74,7 @@ export default function Header({ contact }: HeaderProps) {
                   component="p"
                   sx={{
                     fontWeight: 400,
-                    mb: 3,
+                    mb: 4,
                     fontSize: { xs: '1rem', sm: '1.25rem', md: '1.5rem' },
                     letterSpacing: '0.1em',
                     textTransform: 'uppercase',
@@ -86,73 +85,88 @@ export default function Header({ contact }: HeaderProps) {
                   {t('title')}
                 </Typography>
                 
-                <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', mb: 2 }}>
+                {/* Decorative Line Breaker */}
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 2,
+                    mb: 2,
+                  }}
+                >
                   <Box
                     sx={{
-                      width: 40,
-                      height: 40,
+                      flex: 1,
+                      height: '2px',
+                      background: 'linear-gradient(90deg, transparent 0%, #e63946 50%, transparent 100%)',
+                      position: 'relative',
+                      '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        left: '50%',
+                        top: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        width: '12px',
+                        height: '12px',
+                        borderRadius: '50%',
+                        background: '#e63946',
+                        boxShadow: '0 0 0 4px rgba(230, 57, 70, 0.2), 0 0 0 8px rgba(230, 57, 70, 0.1)',
+                      },
+                    }}
+                  />
+                  <Box
+                    sx={{
+                      width: '60px',
+                      height: '60px',
                       borderRadius: '50%',
-                      background: '#e63946',
+                      background: 'linear-gradient(135deg, #e63946 0%, #ff4757 100%)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease',
-                      '&:hover': {
-                        transform: 'scale(1.1)',
-                        background: '#ff4757',
+                      boxShadow: '0 4px 20px rgba(230, 57, 70, 0.4)',
+                      position: 'relative',
+                      '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        inset: '-4px',
+                        borderRadius: '50%',
+                        background: 'linear-gradient(135deg, #e63946, #ff4757)',
+                        opacity: 0.3,
+                        filter: 'blur(8px)',
+                        zIndex: -1,
                       },
                     }}
                   >
-                    <LinkedIn sx={{ color: 'white', fontSize: '1.25rem' }} />
+                    <Box
+                      sx={{
+                        width: '8px',
+                        height: '8px',
+                        borderRadius: '50%',
+                        background: 'white',
+                        boxShadow: '0 0 10px rgba(255, 255, 255, 0.8)',
+                      }}
+                    />
                   </Box>
                   <Box
                     sx={{
-                      width: 40,
-                      height: 40,
-                      borderRadius: '50%',
-                      background: '#e63946',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease',
-                      '&:hover': {
-                        transform: 'scale(1.1)',
-                        background: '#ff4757',
+                      flex: 1,
+                      height: '2px',
+                      background: 'linear-gradient(90deg, transparent 0%, #e63946 50%, transparent 100%)',
+                      position: 'relative',
+                      '&::after': {
+                        content: '""',
+                        position: 'absolute',
+                        right: '50%',
+                        top: '50%',
+                        transform: 'translate(50%, -50%)',
+                        width: '12px',
+                        height: '12px',
+                        borderRadius: '50%',
+                        background: '#e63946',
+                        boxShadow: '0 0 0 4px rgba(230, 57, 70, 0.2), 0 0 0 8px rgba(230, 57, 70, 0.1)',
                       },
                     }}
-                  >
-                    <Twitter sx={{ color: 'white', fontSize: '1.25rem' }} />
-                  </Box>
-                  <Box
-                    sx={{
-                      width: 40,
-                      height: 40,
-                      borderRadius: '50%',
-                      background: '#e63946',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease',
-                      '&:hover': {
-                        transform: 'scale(1.1)',
-                        background: '#ff4757',
-                      },
-                    }}
-                  >
-                    <Instagram sx={{ color: 'white', fontSize: '1.25rem' }} />
-                  </Box>
-                  <Typography
-                    sx={{
-                      color: 'white',
-                      fontSize: '0.875rem',
-                      ml: 1,
-                    }}
-                  >
-                    @sandra.aristizabal
-                  </Typography>
+                  />
                 </Box>
               </motion.div>
             </Box>
