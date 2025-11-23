@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { Box, Typography, Container, Avatar } from '@mui/material';
 import { ContactInfo } from '@/types/cv';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useColors } from '@/contexts/ColorContext';
+import ColorPicker from './ColorPicker';
 
 interface HeaderProps {
   contact: ContactInfo;
@@ -11,6 +13,7 @@ interface HeaderProps {
 
 export default function Header({ contact }: HeaderProps) {
   const { t } = useLanguage();
+  const { primaryColor, secondaryColor } = useColors();
   
   return (
     <motion.div
@@ -20,8 +23,9 @@ export default function Header({ contact }: HeaderProps) {
     >
       <Box
         sx={{
-          background: '#1a5f5f', // Dark teal/green
+          background: primaryColor,
           color: 'white',
+          transition: 'background 0.3s ease',
           py: { xs: 6, md: 8 },
           position: 'relative',
           overflow: 'hidden',
@@ -98,8 +102,9 @@ export default function Header({ contact }: HeaderProps) {
                     sx={{
                       flex: 1,
                       height: '2px',
-                      background: 'linear-gradient(90deg, transparent 0%, #e63946 50%, transparent 100%)',
+                      background: `linear-gradient(90deg, transparent 0%, ${secondaryColor} 50%, transparent 100%)`,
                       position: 'relative',
+                      transition: 'background 0.3s ease',
                       '&::before': {
                         content: '""',
                         position: 'absolute',
@@ -109,8 +114,9 @@ export default function Header({ contact }: HeaderProps) {
                         width: '12px',
                         height: '12px',
                         borderRadius: '50%',
-                        background: '#e63946',
-                        boxShadow: '0 0 0 4px rgba(230, 57, 70, 0.2), 0 0 0 8px rgba(230, 57, 70, 0.1)',
+                        background: secondaryColor,
+                        boxShadow: `0 0 0 4px ${secondaryColor}33, 0 0 0 8px ${secondaryColor}1a`,
+                        transition: 'all 0.3s ease',
                       },
                     }}
                   />
@@ -119,18 +125,19 @@ export default function Header({ contact }: HeaderProps) {
                       width: '60px',
                       height: '60px',
                       borderRadius: '50%',
-                      background: 'linear-gradient(135deg, #e63946 0%, #ff4757 100%)',
+                      background: `linear-gradient(135deg, ${secondaryColor} 0%, ${secondaryColor}dd 100%)`,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      boxShadow: '0 4px 20px rgba(230, 57, 70, 0.4)',
+                      boxShadow: `0 4px 20px ${secondaryColor}66`,
                       position: 'relative',
+                      transition: 'all 0.3s ease',
                       '&::before': {
                         content: '""',
                         position: 'absolute',
                         inset: '-4px',
                         borderRadius: '50%',
-                        background: 'linear-gradient(135deg, #e63946, #ff4757)',
+                        background: `linear-gradient(135deg, ${secondaryColor}, ${secondaryColor}dd)`,
                         opacity: 0.3,
                         filter: 'blur(8px)',
                         zIndex: -1,
@@ -151,8 +158,9 @@ export default function Header({ contact }: HeaderProps) {
                     sx={{
                       flex: 1,
                       height: '2px',
-                      background: 'linear-gradient(90deg, transparent 0%, #e63946 50%, transparent 100%)',
+                      background: `linear-gradient(90deg, transparent 0%, ${secondaryColor} 50%, transparent 100%)`,
                       position: 'relative',
+                      transition: 'background 0.3s ease',
                       '&::after': {
                         content: '""',
                         position: 'absolute',
@@ -162,8 +170,9 @@ export default function Header({ contact }: HeaderProps) {
                         width: '12px',
                         height: '12px',
                         borderRadius: '50%',
-                        background: '#e63946',
-                        boxShadow: '0 0 0 4px rgba(230, 57, 70, 0.2), 0 0 0 8px rgba(230, 57, 70, 0.1)',
+                        background: secondaryColor,
+                        boxShadow: `0 0 0 4px ${secondaryColor}33, 0 0 0 8px ${secondaryColor}1a`,
+                        transition: 'all 0.3s ease',
                       },
                     }}
                   />
@@ -200,6 +209,17 @@ export default function Header({ contact }: HeaderProps) {
                 </Box>
               </Avatar>
             </motion.div>
+          </Box>
+          
+          {/* Color Picker Button */}
+          <Box
+            sx={{
+              position: 'absolute',
+              top: { xs: 16, md: 24 },
+              right: { xs: 16, md: 24 },
+            }}
+          >
+            <ColorPicker />
           </Box>
         </Container>
       </Box>

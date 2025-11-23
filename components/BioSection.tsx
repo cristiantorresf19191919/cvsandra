@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Box, Typography, Container, Paper } from '@mui/material';
 import { LocationOn, CalendarToday, Phone, Email } from '@mui/icons-material';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useColors } from '@/contexts/ColorContext';
 
 interface BioSectionProps {
   bio: string;
@@ -16,6 +17,7 @@ interface BioSectionProps {
 
 export default function BioSection({ bio, contact }: BioSectionProps) {
   const { t } = useLanguage();
+  const { secondaryColor } = useColors();
   
   return (
     <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 } }}>
@@ -60,7 +62,8 @@ export default function BioSection({ bio, contact }: BioSectionProps) {
                   left: 0,
                   width: '60px',
                   height: '3px',
-                  background: '#e63946',
+                  background: secondaryColor,
+                  transition: 'background 0.3s ease',
                 },
               }}
             >
@@ -86,7 +89,8 @@ export default function BioSection({ bio, contact }: BioSectionProps) {
                     width: 40,
                     height: 40,
                     borderRadius: '50%',
-                    background: '#e63946',
+                    background: secondaryColor,
+                  transition: 'background 0.3s ease',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -117,7 +121,8 @@ export default function BioSection({ bio, contact }: BioSectionProps) {
                     width: 40,
                     height: 40,
                     borderRadius: '50%',
-                    background: '#e63946',
+                    background: secondaryColor,
+                  transition: 'background 0.3s ease',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -148,7 +153,8 @@ export default function BioSection({ bio, contact }: BioSectionProps) {
                     width: 40,
                     height: 40,
                     borderRadius: '50%',
-                    background: '#e63946',
+                    background: secondaryColor,
+                  transition: 'background 0.3s ease',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -179,7 +185,8 @@ export default function BioSection({ bio, contact }: BioSectionProps) {
                     width: 40,
                     height: 40,
                     borderRadius: '50%',
-                    background: '#e63946',
+                    background: secondaryColor,
+                  transition: 'background 0.3s ease',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -216,7 +223,8 @@ export default function BioSection({ bio, contact }: BioSectionProps) {
                   left: 0,
                   width: '60px',
                   height: '3px',
-                  background: '#e63946',
+                  background: secondaryColor,
+                  transition: 'background 0.3s ease',
                 },
               }}
             >

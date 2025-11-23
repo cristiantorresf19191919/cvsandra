@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Box, Typography, Container, Paper } from '@mui/material';
 import { Education } from '@/types/cv';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useColors } from '@/contexts/ColorContext';
 
 interface EducationSectionProps {
   education: Education[];
@@ -11,13 +12,15 @@ interface EducationSectionProps {
 
 export default function EducationSection({ education }: EducationSectionProps) {
   const { t } = useLanguage();
+  const { primaryColor, secondaryColor } = useColors();
   
   return (
     <Box
       sx={{
-        background: '#1a5f5f',
+        background: primaryColor,
         py: { xs: 6, md: 8 },
         position: 'relative',
+        transition: 'background 0.3s ease',
       }}
     >
       <Container maxWidth="lg">
@@ -61,7 +64,7 @@ export default function EducationSection({ education }: EducationSectionProps) {
                   left: 0,
                   width: '60px',
                   height: '3px',
-                  background: '#e63946',
+                  background: secondaryColor,
                 },
               }}
             >
@@ -98,12 +101,12 @@ export default function EducationSection({ education }: EducationSectionProps) {
                       top: 0,
                       bottom: 0,
                       width: '4px',
-                      background: '#e63946',
+                      background: secondaryColor,
                     },
                     '&:hover': {
                       boxShadow: '0 4px 16px rgba(0,0,0,0.1), 0 8px 24px rgba(0,0,0,0.05)',
                       transform: 'translateY(-2px)',
-                      borderColor: 'rgba(230, 57, 70, 0.2)',
+                        borderColor: `${secondaryColor}33`,
                     },
                   }}
                 >
@@ -113,10 +116,10 @@ export default function EducationSection({ education }: EducationSectionProps) {
                         width: '14px',
                         height: '14px',
                         borderRadius: '50%',
-                        background: '#e63946',
+                        background: secondaryColor,
                         flexShrink: 0,
                         mt: 0.75,
-                        boxShadow: '0 2px 8px rgba(230, 57, 70, 0.3)',
+                        boxShadow: `0 2px 8px ${secondaryColor}4d`,
                       }}
                     />
                     <Box sx={{ flex: 1 }}>
@@ -149,10 +152,10 @@ export default function EducationSection({ education }: EducationSectionProps) {
                         <Typography
                           variant="body2"
                           sx={{
-                            color: '#e63946',
+                            color: secondaryColor,
                             fontWeight: 600,
                             fontSize: '0.875rem',
-                            background: '#fee2e2',
+                            background: `${secondaryColor}15`,
                             px: 1.5,
                             py: 0.5,
                             borderRadius: 1,

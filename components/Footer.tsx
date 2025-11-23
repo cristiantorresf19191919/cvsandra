@@ -3,9 +3,15 @@
 import { motion } from 'framer-motion';
 import { Box, Typography, Container } from '@mui/material';
 import { Email, Phone, LocationOn } from '@mui/icons-material';
-import { cvData } from '@/data/cvData';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useColors } from '@/contexts/ColorContext';
+import { getCvData } from '@/data/cvData';
 
 export default function Footer() {
+  const { language } = useLanguage();
+  const { primaryColor } = useColors();
+  const cvData = getCvData(language);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -15,10 +21,11 @@ export default function Footer() {
     >
       <Box
         sx={{
-          background: '#1a5f5f', // Dark teal/green
+          background: primaryColor,
           color: 'white',
           py: 3,
           mt: 0,
+          transition: 'background 0.3s ease',
         }}
       >
         <Container maxWidth="lg">

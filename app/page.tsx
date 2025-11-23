@@ -1,8 +1,10 @@
 'use client';
 
+import React from 'react';
 import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
 import { Inter, Playfair_Display } from 'next/font/google';
 import { LanguageProvider, useLanguage } from '@/contexts/LanguageContext';
+import { ColorProvider, useColors } from '@/contexts/ColorContext';
 import { getCvData } from '@/data/cvData';
 import Header from '@/components/Header';
 import BioSection from '@/components/BioSection';
@@ -26,18 +28,18 @@ const playfair = Playfair_Display({
   weight: ['400', '500', '600', '700'],
 });
 
-const theme = createTheme({
+const createDynamicTheme = (primaryColor: string, secondaryColor: string) => createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#1a5f5f', // Dark teal/green
-      light: '#2a7f7f',
-      dark: '#0f3f3f',
+      main: primaryColor,
+      light: primaryColor,
+      dark: primaryColor,
     },
     secondary: {
-      main: '#e63946', // Red accent
-      light: '#ff4757',
-      dark: '#c92a2a',
+      main: secondaryColor,
+      light: secondaryColor,
+      dark: secondaryColor,
     },
     background: {
       default: '#1a5f5f', // Dark teal/green background
@@ -146,6 +148,27 @@ const theme = createTheme({
   },
 });
 
+function ThemeWrapper({ children }: { children: React.ReactNode }) {
+  const { primaryColor, secondaryColor } = useColors();
+  const dynamicTheme = createDynamicTheme(primaryColor, secondaryColor);
+
+  return (
+    <ThemeProvider theme={dynamicTheme}>
+      <CssBaseline />
+      <div 
+        className={`${inter.variable} ${playfair.variable}`}
+        style={{ 
+          minHeight: '100vh', 
+          background: primaryColor,
+          transition: 'background 0.3s ease',
+        }}
+      >
+        {children}
+      </div>
+    </ThemeProvider>
+  );
+}
+
 function HomeContent() {
   const { language } = useLanguage();
   const cvData = getCvData(language);
@@ -166,19 +189,12 @@ function HomeContent() {
 
 export default function Home() {
   return (
-    <LanguageProvider>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <div 
-          className={`${inter.variable} ${playfair.variable}`}
-          style={{ 
-            minHeight: '100vh', 
-            background: '#1a5f5f', // Dark teal/green background
-          }}
-        >
+    <ColorProvider>
+      <LanguageProvider>
+        <ThemeWrapper>
           <HomeContent />
-        </div>
-      </ThemeProvider>
-    </LanguageProvider>
+        </ThemeWrapper>
+      </LanguageProvider>
+    </ColorProvider>
   );
 }

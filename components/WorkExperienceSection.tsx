@@ -5,6 +5,7 @@ import { Box, Typography, Container, Paper } from '@mui/material';
 import { WorkExperience } from '@/types/cv';
 import WorkExperienceCard from './WorkExperienceCard';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useColors } from '@/contexts/ColorContext';
 
 interface WorkExperienceSectionProps {
   experiences: WorkExperience[];
@@ -12,13 +13,15 @@ interface WorkExperienceSectionProps {
 
 export default function WorkExperienceSection({ experiences }: WorkExperienceSectionProps) {
   const { t } = useLanguage();
+  const { primaryColor } = useColors();
   
   return (
     <Box
       sx={{
-        background: '#1a5f5f',
+        background: primaryColor,
         py: { xs: 6, md: 8 },
         position: 'relative',
+        transition: 'background 0.3s ease',
       }}
     >
       <Container maxWidth="lg">

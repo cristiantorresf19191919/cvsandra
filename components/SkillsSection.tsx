@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Box, Typography, Container, Paper } from '@mui/material';
 import { Skill } from '@/types/cv';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useColors } from '@/contexts/ColorContext';
 
 interface SkillsSectionProps {
   skills: Skill[];
@@ -11,13 +12,15 @@ interface SkillsSectionProps {
 
 export default function SkillsSection({ skills }: SkillsSectionProps) {
   const { t } = useLanguage();
+  const { primaryColor, secondaryColor } = useColors();
   
   return (
     <Box
       sx={{
-        background: '#1a5f5f',
+        background: primaryColor,
         py: { xs: 6, md: 8 },
         position: 'relative',
+        transition: 'background 0.3s ease',
       }}
     >
       <Container maxWidth="lg">
@@ -61,7 +64,7 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
                   left: 0,
                   width: '60px',
                   height: '3px',
-                  background: '#e63946',
+                  background: secondaryColor,
                 },
               }}
             >
@@ -134,9 +137,9 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
                         }}
                         style={{
                           height: '100%',
-                          background: 'linear-gradient(90deg, #e63946 0%, #ff4757 100%)',
+                          background: `linear-gradient(90deg, ${secondaryColor} 0%, ${secondaryColor}dd 100%)`,
                           borderRadius: 1,
-                          boxShadow: '0 2px 4px rgba(230, 57, 70, 0.3)',
+                          boxShadow: `0 2px 4px ${secondaryColor}4d`,
                         }}
                       />
                     </Box>

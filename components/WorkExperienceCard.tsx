@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Box, Typography, Paper } from '@mui/material';
 import { WorkExperience } from '@/types/cv';
+import { useColors } from '@/contexts/ColorContext';
 
 interface WorkExperienceCardProps {
   experience: WorkExperience;
@@ -10,6 +11,8 @@ interface WorkExperienceCardProps {
 }
 
 export default function WorkExperienceCard({ experience, index }: WorkExperienceCardProps) {
+  const { secondaryColor } = useColors();
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: 60 }}
@@ -39,12 +42,12 @@ export default function WorkExperienceCard({ experience, index }: WorkExperience
             top: 0,
             bottom: 0,
             width: '4px',
-            background: '#e63946',
+                      background: secondaryColor,
           },
           '&:hover': {
             boxShadow: '0 4px 16px rgba(0,0,0,0.1), 0 8px 24px rgba(0,0,0,0.05)',
             transform: 'translateY(-2px)',
-            borderColor: 'rgba(230, 57, 70, 0.2)',
+                        borderColor: `${secondaryColor}33`,
           },
         }}
       >
@@ -54,10 +57,10 @@ export default function WorkExperienceCard({ experience, index }: WorkExperience
               width: '14px',
               height: '14px',
               borderRadius: '50%',
-              background: '#e63946',
+                      background: secondaryColor,
               flexShrink: 0,
               mt: 0.75,
-              boxShadow: '0 2px 8px rgba(230, 57, 70, 0.3)',
+                        boxShadow: `0 2px 8px ${secondaryColor}4d`,
             }}
           />
           <Box sx={{ flex: 1 }}>
@@ -80,10 +83,10 @@ export default function WorkExperienceCard({ experience, index }: WorkExperience
               <Typography
                 variant="body2"
                 sx={{
-                  color: '#e63946',
+                  color: secondaryColor,
                   fontWeight: 600,
                   fontSize: '0.875rem',
-                  background: '#fee2e2',
+                  background: `${secondaryColor}15`,
                   px: 1.5,
                   py: 0.5,
                   borderRadius: 1,
