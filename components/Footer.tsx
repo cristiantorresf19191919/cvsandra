@@ -42,7 +42,7 @@ export default function Footer() {
                 fontWeight: 400,
               }}
             >
-              © {new Date().getFullYear()} Professional CV
+              SANDRA MILENA ARISTIZÁBAL SALGUERO CV & PORTFOLIO
             </Typography>
           </Box>
         </Container>
@@ -50,5 +50,6 @@ export default function Footer() {
     </motion.div>
   );
 }
+
 
 

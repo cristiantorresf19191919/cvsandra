@@ -6,6 +6,11 @@ import { cvData } from '@/data/cvData';
 import Header from '@/components/Header';
 import BioSection from '@/components/BioSection';
 import WorkExperienceSection from '@/components/WorkExperienceSection';
+import EducationSection from '@/components/EducationSection';
+import CertificatesSection from '@/components/CertificatesSection';
+import SkillsSection from '@/components/SkillsSection';
+import InterestsSection from '@/components/InterestsSection';
+import ReferencesSection from '@/components/ReferencesSection';
 import Footer from '@/components/Footer';
 
 const inter = Inter({
@@ -155,6 +160,11 @@ export default function Home() {
         <Header contact={cvData.contact} />
         <BioSection bio={cvData.bio} />
         <WorkExperienceSection experiences={cvData.workExperience} />
+        <EducationSection education={cvData.education} />
+        <CertificatesSection certificates={cvData.certificates} />
+        <SkillsSection skills={cvData.skills} />
+        <InterestsSection interests={cvData.interests} />
+        <ReferencesSection references={cvData.references} />
         <Footer />
       </div>
     </ThemeProvider>

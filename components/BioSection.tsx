@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Box, Typography, Container, Paper } from '@mui/material';
+import { Box, Typography, Container, Paper, Avatar } from '@mui/material';
 import { Person } from '@mui/icons-material';
 
 interface BioSectionProps {
@@ -38,45 +38,72 @@ export default function BioSection({ bio }: BioSectionProps) {
             },
           }}
         >
-          <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 3, mb: 3 }}>
-            <Box
-              sx={{
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                borderRadius: '50%',
-                p: 2,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
-                flexShrink: 0,
-              }}
+          <Box 
+            sx={{ 
+              display: 'flex', 
+              flexDirection: { xs: 'column', md: 'row' },
+              alignItems: { xs: 'center', md: 'flex-start' },
+              gap: 4,
+            }}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
-              <Person sx={{ color: 'white', fontSize: '2rem' }} />
-            </Box>
-            <Box sx={{ flex: 1 }}>
-              <Typography
-                variant="h4"
-                component="h2"
+              <Avatar
                 sx={{
-                  fontWeight: 600,
-                  mb: 3,
-                  color: '#1a202c',
-                  position: 'relative',
-                  display: 'inline-block',
-                  '&::after': {
-                    content: '""',
-                    position: 'absolute',
-                    bottom: -8,
-                    left: 0,
-                    width: '60px',
-                    height: '3px',
-                    background: 'linear-gradient(90deg, #667eea 0%, #764ba2 100%)',
-                    borderRadius: 2,
-                  },
+                  width: { xs: 180, md: 220 },
+                  height: { xs: 180, md: 220 },
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  boxShadow: '0 8px 24px rgba(102, 126, 234, 0.3)',
+                  border: '4px solid white',
                 }}
               >
-                Professional Bio
-              </Typography>
+                <Person sx={{ fontSize: '6rem', color: 'white' }} />
+              </Avatar>
+            </motion.div>
+            
+            <Box sx={{ flex: 1 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2.5, mb: 3 }}>
+                <Box
+                  sx={{
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    borderRadius: '50%',
+                    p: 2,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
+                    flexShrink: 0,
+                  }}
+                >
+                  <Person sx={{ color: 'white', fontSize: '2rem' }} />
+                </Box>
+                <Typography
+                  variant="h4"
+                  component="h2"
+                  sx={{
+                    fontWeight: 600,
+                    color: '#1a202c',
+                    position: 'relative',
+                    display: 'inline-block',
+                    '&::after': {
+                      content: '""',
+                      position: 'absolute',
+                      bottom: -8,
+                      left: 0,
+                      width: '60px',
+                      height: '3px',
+                      background: 'linear-gradient(90deg, #667eea 0%, #764ba2 100%)',
+                      borderRadius: 2,
+                    },
+                  }}
+                >
+                  About Me
+                </Typography>
+              </Box>
               <Typography
                 variant="body1"
                 sx={{

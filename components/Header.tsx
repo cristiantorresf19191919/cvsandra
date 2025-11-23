@@ -56,7 +56,7 @@ export default function Header({ contact }: HeaderProps) {
               component="h1"
               sx={{
                 fontWeight: 700,
-                mb: 4,
+                mb: 2,
                 fontSize: { xs: '2.5rem', sm: '3.5rem', md: '4.5rem' },
                 textAlign: 'center',
                 letterSpacing: '-0.03em',
@@ -69,6 +69,28 @@ export default function Header({ contact }: HeaderProps) {
             >
               {contact.name}
             </Typography>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <Typography
+                variant="h5"
+                component="p"
+                sx={{
+                  fontWeight: 400,
+                  mb: 4,
+                  fontSize: { xs: '1rem', sm: '1.125rem', md: '1.25rem' },
+                  textAlign: 'center',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  color: 'rgba(255,255,255,0.9)',
+                  fontFamily: 'var(--font-inter)',
+                }}
+              >
+                Social Communicator – Journalist
+              </Typography>
+            </motion.div>
           </motion.div>
           
           <motion.div
