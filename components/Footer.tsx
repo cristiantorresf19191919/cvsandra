@@ -1,7 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Box, Typography, Container, Divider } from '@mui/material';
+import { Box, Typography, Container } from '@mui/material';
+import { Email, Phone, LocationOn } from '@mui/icons-material';
+import { cvData } from '@/data/cvData';
 
 export default function Footer() {
   return (
@@ -13,43 +15,63 @@ export default function Footer() {
     >
       <Box
         sx={{
-          background: '#1a202c',
+          background: '#1a5f5f', // Dark teal/green
           color: 'white',
-          py: 4,
-          mt: 8,
+          py: 3,
+          mt: 0,
         }}
       >
         <Container maxWidth="lg">
-          <Divider 
-            sx={{ 
-              mb: 4, 
-              borderColor: 'rgba(255,255,255,0.1)',
-            }} 
-          />
           <Box
             sx={{
               display: 'flex',
+              flexWrap: 'wrap',
               justifyContent: 'center',
+              gap: { xs: 3, md: 5 },
               alignItems: 'center',
             }}
           >
-            <Typography
-              variant="body2"
-              sx={{
-                color: 'rgba(255,255,255,0.7)',
-                fontSize: '0.875rem',
-                letterSpacing: '0.05em',
-                fontWeight: 400,
-              }}
-            >
-              SANDRA MILENA ARISTIZÁBAL SALGUERO CV & PORTFOLIO
-            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+              <Email sx={{ fontSize: '1.25rem' }} />
+              <Typography
+                variant="body2"
+                sx={{
+                  fontSize: '0.875rem',
+                  fontWeight: 400,
+                }}
+              >
+                {cvData.contact.email}
+              </Typography>
+            </Box>
+            
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+              <Phone sx={{ fontSize: '1.25rem' }} />
+              <Typography
+                variant="body2"
+                sx={{
+                  fontSize: '0.875rem',
+                  fontWeight: 400,
+                }}
+              >
+                {cvData.contact.phone}
+              </Typography>
+            </Box>
+            
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+              <LocationOn sx={{ fontSize: '1.25rem' }} />
+              <Typography
+                variant="body2"
+                sx={{
+                  fontSize: '0.875rem',
+                  fontWeight: 400,
+                }}
+              >
+                {cvData.contact.location}
+              </Typography>
+            </Box>
           </Box>
         </Container>
       </Box>
     </motion.div>
   );
 }
-
-
-

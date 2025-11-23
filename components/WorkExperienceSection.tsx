@@ -1,8 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Box, Typography, Container } from '@mui/material';
-import { Work } from '@mui/icons-material';
+import { Box, Typography, Container, Paper } from '@mui/material';
 import { WorkExperience } from '@/types/cv';
 import WorkExperienceCard from './WorkExperienceCard';
 
@@ -14,7 +13,7 @@ export default function WorkExperienceSection({ experiences }: WorkExperienceSec
   return (
     <Box
       sx={{
-        background: 'linear-gradient(180deg, #fafafa 0%, #f5f5f5 100%)',
+        background: '#1a5f5f',
         py: { xs: 6, md: 8 },
         position: 'relative',
       }}
@@ -24,66 +23,42 @@ export default function WorkExperienceSection({ experiences }: WorkExperienceSec
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8 }}
         >
-          <Box 
-            sx={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: 2.5, 
-              mb: { xs: 5, md: 7 },
+          <Paper
+            elevation={0}
+            sx={{
+              p: { xs: 4, md: 5 },
+              background: 'white',
+              borderRadius: 0,
+              boxShadow: 'none',
+              mb: 4,
             }}
           >
-            <Box
+            <Typography
+              variant="h4"
+              component="h2"
               sx={{
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                borderRadius: '50%',
-                p: 2,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
-                flexShrink: 0,
+                fontWeight: 700,
+                mb: 4,
+                color: '#1a202c',
+                textTransform: 'uppercase',
+                fontSize: { xs: '1.25rem', md: '1.5rem' },
+                letterSpacing: '0.05em',
+                fontFamily: 'var(--font-inter)',
               }}
             >
-              <Work sx={{ color: 'white', fontSize: '2rem' }} />
-            </Box>
-            <Box>
-              <Typography
-                variant="h4"
-                component="h2"
-                sx={{
-                  fontWeight: 700,
-                  textTransform: 'uppercase',
-                  color: '#1a202c',
-                  fontSize: { xs: '1.75rem', md: '2rem' },
-                  letterSpacing: '0.05em',
-                  position: 'relative',
-                  display: 'inline-block',
-                  '&::after': {
-                    content: '""',
-                    position: 'absolute',
-                    bottom: -12,
-                    left: 0,
-                    width: '80px',
-                    height: '3px',
-                    background: 'linear-gradient(90deg, #667eea 0%, #764ba2 100%)',
-                    borderRadius: 2,
-                  },
-                }}
-              >
-                Work Experience
-              </Typography>
-            </Box>
-          </Box>
+              Work Experience
+            </Typography>
 
-          {experiences.map((experience, index) => (
-            <WorkExperienceCard
-              key={`${experience.company}-${index}`}
-              experience={experience}
-              index={index}
-            />
-          ))}
+            {experiences.map((experience, index) => (
+              <WorkExperienceCard
+                key={`${experience.company}-${index}`}
+                experience={experience}
+                index={index}
+              />
+            ))}
+          </Paper>
         </motion.div>
       </Container>
     </Box>

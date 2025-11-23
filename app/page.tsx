@@ -7,10 +7,7 @@ import Header from '@/components/Header';
 import BioSection from '@/components/BioSection';
 import WorkExperienceSection from '@/components/WorkExperienceSection';
 import EducationSection from '@/components/EducationSection';
-import CertificatesSection from '@/components/CertificatesSection';
 import SkillsSection from '@/components/SkillsSection';
-import InterestsSection from '@/components/InterestsSection';
-import ReferencesSection from '@/components/ReferencesSection';
 import Footer from '@/components/Footer';
 
 const inter = Inter({
@@ -30,17 +27,17 @@ const theme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#2d3748',
-      light: '#4a5568',
-      dark: '#1a202c',
+      main: '#1a5f5f', // Dark teal/green
+      light: '#2a7f7f',
+      dark: '#0f3f3f',
     },
     secondary: {
-      main: '#667eea',
-      light: '#818cf8',
-      dark: '#4c51bf',
+      main: '#e63946', // Red accent
+      light: '#ff4757',
+      dark: '#c92a2a',
     },
     background: {
-      default: '#fafafa',
+      default: '#1a5f5f', // Dark teal/green background
       paper: '#ffffff',
     },
     text: {
@@ -154,17 +151,15 @@ export default function Home() {
         className={`${inter.variable} ${playfair.variable}`}
         style={{ 
           minHeight: '100vh', 
-          background: 'linear-gradient(180deg, #fafafa 0%, #f5f5f5 100%)',
+          background: '#1a5f5f', // Dark teal/green background
         }}
       >
         <Header contact={cvData.contact} />
-        <BioSection bio={cvData.bio} />
+        <BioSection bio={cvData.bio} contact={cvData.contact} />
+        <WorkExperienceSection experiences={cvData.workExperience} />
+        <SkillsSection skills={cvData.skills} />
         <WorkExperienceSection experiences={cvData.workExperience} />
         <EducationSection education={cvData.education} />
-        <CertificatesSection certificates={cvData.certificates} />
-        <SkillsSection skills={cvData.skills} />
-        <InterestsSection interests={cvData.interests} />
-        <ReferencesSection references={cvData.references} />
         <Footer />
       </div>
     </ThemeProvider>
