@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Paper } from '@mui/material';
 import { WorkExperience } from '@/types/cv';
 
 interface WorkExperienceCardProps {
@@ -20,16 +20,44 @@ export default function WorkExperienceCard({ experience, index }: WorkExperience
         delay: index * 0.1,
       }}
     >
-      <Box sx={{ mb: index < 10 ? 4 : 0 }}>
+      <Paper
+        elevation={0}
+        sx={{
+          p: { xs: 3, md: 4 },
+          mb: 3,
+          background: 'white',
+          borderRadius: 2,
+          border: '1px solid rgba(0,0,0,0.06)',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.03)',
+          transition: 'all 0.3s ease',
+          position: 'relative',
+          overflow: 'hidden',
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            bottom: 0,
+            width: '4px',
+            background: '#e63946',
+          },
+          '&:hover': {
+            boxShadow: '0 4px 16px rgba(0,0,0,0.1), 0 8px 24px rgba(0,0,0,0.05)',
+            transform: 'translateY(-2px)',
+            borderColor: 'rgba(230, 57, 70, 0.2)',
+          },
+        }}
+      >
         <Box sx={{ display: 'flex', gap: 3, alignItems: 'flex-start' }}>
           <Box
             sx={{
-              width: '12px',
-              height: '12px',
+              width: '14px',
+              height: '14px',
               borderRadius: '50%',
-              background: '#e63946', // Red bullet
+              background: '#e63946',
               flexShrink: 0,
-              mt: 0.5,
+              mt: 0.75,
+              boxShadow: '0 2px 8px rgba(230, 57, 70, 0.3)',
             }}
           />
           <Box sx={{ flex: 1 }}>
@@ -41,36 +69,53 @@ export default function WorkExperienceCard({ experience, index }: WorkExperience
                 color: '#1a202c',
                 fontSize: { xs: '1rem', md: '1.125rem' },
                 textTransform: 'uppercase',
-                mb: 0.5,
+                mb: 1,
                 fontFamily: 'var(--font-inter)',
+                letterSpacing: '0.02em',
               }}
             >
               {experience.role.toUpperCase()}
             </Typography>
-            <Typography
-              variant="body2"
-              sx={{
-                color: '#1a202c',
-                fontWeight: 600,
-                fontSize: '0.875rem',
-                mb: 1,
-              }}
-            >
-              {experience.startDate} - {experience.endDate}
-            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 1.5 }}>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: '#e63946',
+                  fontWeight: 600,
+                  fontSize: '0.875rem',
+                  background: '#fee2e2',
+                  px: 1.5,
+                  py: 0.5,
+                  borderRadius: 1,
+                }}
+              >
+                {experience.startDate} - {experience.endDate}
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: '#6b7280',
+                  fontWeight: 500,
+                  fontSize: '0.8125rem',
+                }}
+              >
+                {experience.company}
+              </Typography>
+            </Box>
             <Typography
               variant="body2"
               sx={{
                 color: '#4a5568',
-                fontSize: '0.875rem',
-                lineHeight: 1.7,
+                fontSize: '0.9375rem',
+                lineHeight: 1.8,
+                fontWeight: 400,
               }}
             >
               {experience.companyDescription}
             </Typography>
           </Box>
         </Box>
-      </Box>
+      </Paper>
     </motion.div>
   );
 }

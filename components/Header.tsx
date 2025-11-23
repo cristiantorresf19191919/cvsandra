@@ -4,12 +4,15 @@ import { motion } from 'framer-motion';
 import { Box, Typography, Container, Avatar } from '@mui/material';
 import { LinkedIn, Twitter, Instagram } from '@mui/icons-material';
 import { ContactInfo } from '@/types/cv';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface HeaderProps {
   contact: ContactInfo;
 }
 
 export default function Header({ contact }: HeaderProps) {
+  const { t } = useLanguage();
+  
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -80,7 +83,7 @@ export default function Header({ contact }: HeaderProps) {
                     fontFamily: 'var(--font-inter)',
                   }}
                 >
-                  Social Communicator – Journalist
+                  {t('title')}
                 </Typography>
                 
                 <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', mb: 2 }}>

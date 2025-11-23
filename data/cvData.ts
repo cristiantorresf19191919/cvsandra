@@ -1,13 +1,232 @@
 import { CVData } from '@/types/cv';
 
-export const cvData: CVData = {
+const cvDataEs: CVData = {
   contact: {
     name: 'Sandra Milena Aristizábal Salguero',
     email: 'jesuissanmile@hotmail.com',
     phone: '(311) 4627493',
     location: 'Bogotá, Colombia',
   },
-  bio: 'Social communicator – journalist with experience as a media assistant, environmental reporter, community manager, journalism teacher, broadcaster, media director, copywriter and content manager for social networks and blogs. Founder at Mi Canal 4.0',
+  bio: 'Comunicadora Social – Periodista con experiencia como asistente de medios, reportera ambiental, community manager, profesora de periodismo, locutora, directora de medios, copywriter y gestora de contenido para redes sociales y blogs.',
+  workExperience: [
+    {
+      company: 'Mi Canal 4.0',
+      companyDescription: 'Medio alternativo para difundir ciencia y tecnología hecha en Colombia',
+      role: 'Fundadora & CEO',
+      startDate: 'Jun 2015',
+      endDate: 'Presente',
+      location: 'Bogotá, COL',
+      responsibilities: [
+        'Como Fundadora & CEO, creé una iniciativa de divulgación científica para difundir ciencia y tecnología hecha en Colombia.',
+        'Entrevisté científicos colombianos que realizan investigación en el país y en el exterior.',
+        'Cubrí eventos de ciencia y tecnología en Bogotá.',
+        'Escribí artículos sobre ciencia, tecnología y medio ambiente que fueron publicados en www.micanal40.com',
+        'Visité escuelas que enseñan a sus estudiantes sobre robótica, domótica y otras áreas científicas para escribir artículos sobre tecnología en las escuelas.',
+        'Creé transmisiones en vivo "Charlas 4.0" para entrevistar investigadores y científicos colombianos en vivo y dar a conocer su investigación e importancia.',
+        'Recorrí centros de investigación en Bogotá para dar a conocer el tipo de investigación que se realiza allí y hacer videos para mis cuentas de redes sociales.',
+      ],
+    },
+    {
+      company: 'Instituto Amazónico de Investigaciones Científicas SINCHI',
+      companyDescription: 'Institución dedicada a la investigación científica sobre temas ambientales, vinculada al Ministerio de Ambiente y Desarrollo Sostenible',
+      role: 'Periodista del proyecto núcleo de desarrollo forestal y biodiversidad en Mapiripán Meta y Cuemaní Cartagena del Chairá Caquetá',
+      startDate: 'Sept 2023',
+      endDate: 'Ene 2024',
+      location: 'Bogotá, COL',
+      responsibilities: [
+        'Creé la estrategia de comunicación para el proyecto núcleo de desarrollo forestal y biodiversidad.',
+        'Coordine la cobertura de viajes de campo por periodistas con los investigadores que estaban en el campo para registrar las actividades y hacer material audiovisual para las redes sociales del instituto.',
+      ],
+    },
+    {
+      company: 'Sociedad de Estudiantes Colombianos de Harvard',
+      companyDescription: 'Comunidad de exalumnos y estudiantes de MIT y Harvard vinculados a Colombia',
+      role: 'Asesora programa de mentoría 2022 - 2023',
+      startDate: 'Ago 2022',
+      endDate: 'Dic 2022',
+      location: 'Bogotá Online, COL',
+      responsibilities: [
+        'Coordine asesorías de currículum para nuevos estudiantes con los mentores de la asociación.',
+      ],
+    },
+    {
+      company: 'Universidad Piloto de Colombia',
+      companyDescription: 'Entidad universitaria de educación superior',
+      role: 'Profesora de copywriting en el Diplomado en Gestión de Contenido Digital',
+      startDate: 'Ago 2021',
+      endDate: 'Ago 2021',
+      location: 'Bogotá, COL',
+      responsibilities: [
+        'Enseñé la clase de copywriting a un grupo de estudiantes de la policía nacional.',
+      ],
+    },
+    {
+      company: 'Universidad Nacional Abierta y a Distancia UNAD',
+      companyDescription: 'Institución universitaria de educación superior virtual',
+      role: 'Community Manager de la Vicerrectoría de Inclusión Social para el Desarrollo Regional y Proyección Comunitaria (VIDER)',
+      startDate: 'Feb 2020',
+      endDate: 'Jun 2020',
+      location: 'Bogotá, COL',
+      responsibilities: [
+        'Logré hacer visible al rector de la UNAD y otros funcionarios de la Vicerrectoría de Inclusión Social para el Desarrollo Regional y Proyección Comunitaria (VIDER) en medios masivos como Canal Caracol y otros.',
+        'Coordine campañas en plataformas digitales de la UNAD.',
+        'Diseñé el plan estratégico de marketing y publicidad para VIDER.',
+        'Capacité a profesores de VIDER en el uso de Twitter.',
+        'Escribí para el blog de UNAD y copias para las plataformas digitales de UNAD.',
+      ],
+    },
+    {
+      company: 'Organización Manzano y Manzano',
+      companyDescription: 'Abogados Asesores de los Maestros Colombianos y sus Sindicatos de Maestros',
+      role: 'Presentadora del programa de radio "Entre líneas"',
+      startDate: 'Abr 2019',
+      endDate: 'Sept 2019',
+      location: 'Bogotá, COL',
+      responsibilities: [
+        'Diseñé el guion para el programa Entre Líneas, que se transmitía todos los domingos de 7 a 8 am.',
+      ],
+    },
+    {
+      company: 'Universidad Minuto de Dios',
+      companyDescription: 'Entidad universitaria de educación superior',
+      role: 'Profesora en la Facultad de Comunicación Social y Periodismo',
+      startDate: 'Mar 2017',
+      endDate: 'Sept 2018',
+      location: 'Bogotá, COL',
+      responsibilities: [
+        'Enseñé clases como: Escritura, periodismo informativo, participación y comunicación en medios digitales, periodismo digital y otras.',
+        'Asesoré proyectos de grado.',
+      ],
+    },
+    {
+      company: 'Departamento de Ciencia y Tecnología DITEC del Ejército Nacional',
+      companyDescription: 'Dirección de Ciencia y Tecnología del Ejército',
+      role: 'Periodista',
+      startDate: 'May 2014',
+      endDate: 'Abr 2015',
+      location: 'Bogotá, COL',
+      responsibilities: [
+        'Diseñé y presenté el programa de radio C, T más I a través de las Emisoras de Radio del Ejército Nacional para difundir los avances científicos y tecnológicos de las fuerzas militares colombianas.',
+        'Escribí artículos para la revista de Ciencia y Tecnología del Ejército Nacional.',
+      ],
+    },
+    {
+      company: 'Fundación Clínica Shaio, división de investigación electrónica y nanoelectrónica',
+      companyDescription: 'Institución enfocada en atención cardiovascular y de alta complejidad',
+      role: 'Periodista',
+      startDate: 'May 2013',
+      endDate: 'May 2014',
+      location: 'Bogotá, COL',
+      responsibilities: [
+        'Escribí el capítulo titulado "De la Ciencia Ficción a la Realidad y de la Realidad a la Destrucción" en conjunto con el científico colombiano Dr. Jorge Reynolds Pombo para el libro "Ética y Defensa de lo Público" escrito por el exmagistrado del Consejo de Estado Dr. Marco Antonio Velilla Moreno.',
+      ],
+    },
+    {
+      company: 'Canal Capital',
+      companyDescription: 'Es un canal de televisión colombiano de señal abierta que transmite al área metropolitana de Bogotá y al departamento de Cundinamarca',
+      role: 'Reportera ambiental',
+      startDate: 'Feb 2012',
+      endDate: 'Feb 2013',
+      location: 'Bogotá, COL',
+      responsibilities: [
+        'Cubrí la fuente de Medio Ambiente e hice noticias para el noticiero del mediodía y de la noche.',
+      ],
+    },
+    {
+      company: 'Oficina Creativa',
+      companyDescription: 'Agencia de Comunicaciones',
+      role: 'Asistente de Medios',
+      startDate: 'Mar 2010',
+      endDate: 'Nov 2011',
+      location: 'Bogotá, COL',
+      responsibilities: [
+        'Logré dar a conocer la Asociación de Chefs Colombianos (Asocolchefs) a través de prensa gratuita en medios masivos como: Canal Caracol, RCN, Canal Capital, Cable Noticias, revistas especializadas, entre otros.',
+        'Escribí comunicados de prensa sobre Asocolchefs.',
+        'Organicé conferencias de prensa con medios locales y nacionales para dar a conocer cuentas como la Asociación de Chefs Colombianos y otras.',
+        'Gestioné la segmentación y monitoreo de medios.',
+      ],
+    },
+  ],
+  education: [
+    {
+      institution: 'Universidad de La Sabana',
+      institutionDescription: 'Universidad de La Sabana es una universidad privada en Colombia de educación superior',
+      degree: 'Maestría en Periodismo y Comunicación Digital',
+      startDate: 'Marzo 2021',
+      endDate: 'Marzo 2021',
+      location: 'Bogotá, COL',
+      mode: 'Online',
+      thesis: 'Trabajo de investigación: Hábitos de consulta de información sobre ciencia en jóvenes universitarios de Bogotá a través de Internet.',
+    },
+    {
+      institution: 'Universidad Externado, Bogotá, Colombia',
+      institutionDescription: 'Universidad Externado es una universidad privada en Colombia de educación superior',
+      degree: 'Comunicadora Social – Periodista',
+      startDate: 'Dic 2010',
+      endDate: 'Dic 2010',
+      location: 'Bogotá, COL',
+    },
+  ],
+  certificates: [
+    {
+      title: 'Curso Job Application',
+      institution: 'Universidad de los Andes',
+      date: 'Mar 2025',
+      location: 'Bogotá online, COL',
+    },
+    {
+      title: 'Seminario Taller - comunicación escrita y escritura avanzada',
+      institution: 'Universidad Nacional de Colombia',
+      date: 'Abril - Junio 2024',
+      location: 'Bogotá online, COL',
+    },
+    {
+      title: 'Inglés General',
+      institution: 'LSI School y OHC Oxford House',
+      date: 'Ago 2021 – Nov 2021 / May 2022 – Dic 2022',
+      location: 'Boston, Massachusetts',
+    },
+    {
+      title: 'Diploma Social Media In Action',
+      institution: 'Madi Academy/MDALatam – EXMA',
+      date: 'Abril - Julio 2021',
+      location: 'Bogotá online, COL',
+    },
+  ],
+  skills: [
+    { name: 'Copywriting y escritura digital para blogs', level: 95 },
+    { name: 'Gestión de plataformas (CapCut, Canva, anuncios de Instagram, anuncios de Facebook, contenido de YouTube, Bitly)', level: 90 },
+    { name: 'Chat GPT', level: 85 },
+    { name: 'Entrevistadora', level: 95 },
+  ],
+  interests: [
+    { name: 'Comunicación Científica' },
+    { name: 'Periodismo Ambiental' },
+    { name: 'Medios Digitales' },
+    { name: 'Educación' },
+    { name: 'Voluntariado en Cambridge Science Festival (Oct 2022, Boston)' },
+  ],
+  references: [
+    {
+      name: 'Jovana Zivkovic',
+      position: 'Gerente de Programa de Idiomas, profesora del curso Job Applications de la Universidad de los Andes',
+      phone: '3002760987',
+    },
+    {
+      name: 'Abelardo Arevalo',
+      phone: '3134969879',
+    },
+  ],
+};
+
+const cvDataEn: CVData = {
+  contact: {
+    name: 'Sandra Milena Aristizábal Salguero',
+    email: 'jesuissanmile@hotmail.com',
+    phone: '(311) 4627493',
+    location: 'Bogotá, Colombia',
+  },
+  bio: 'Social Communicator – Journalist with experience as a media assistant, environmental reporter, community manager, journalism teacher, broadcaster, media director, copywriter and content manager for social networks and blogs.',
   workExperience: [
     {
       company: 'Mi Canal 4.0',
@@ -219,5 +438,8 @@ export const cvData: CVData = {
   ],
 };
 
+export const getCvData = (lang: 'es' | 'en'): CVData => {
+  return lang === 'es' ? cvDataEs : cvDataEn;
+};
 
-
+export const cvData = cvDataEs; // Default export for backward compatibility

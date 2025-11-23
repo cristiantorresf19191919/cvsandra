@@ -2,13 +2,16 @@
 
 import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
 import { Inter, Playfair_Display } from 'next/font/google';
-import { cvData } from '@/data/cvData';
+import { LanguageProvider, useLanguage } from '@/contexts/LanguageContext';
+import { getCvData } from '@/data/cvData';
 import Header from '@/components/Header';
 import BioSection from '@/components/BioSection';
 import WorkExperienceSection from '@/components/WorkExperienceSection';
 import EducationSection from '@/components/EducationSection';
 import SkillsSection from '@/components/SkillsSection';
 import Footer from '@/components/Footer';
+import WhatsAppButton from '@/components/WhatsAppButton';
+import LanguageToggle from '@/components/LanguageToggle';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -143,25 +146,39 @@ const theme = createTheme({
   },
 });
 
+function HomeContent() {
+  const { language } = useLanguage();
+  const cvData = getCvData(language);
+
+  return (
+    <>
+      <Header contact={cvData.contact} />
+      <BioSection bio={cvData.bio} contact={cvData.contact} />
+      <SkillsSection skills={cvData.skills} />
+      <WorkExperienceSection experiences={cvData.workExperience} />
+      <EducationSection education={cvData.education} />
+      <Footer />
+      <WhatsAppButton />
+      <LanguageToggle />
+    </>
+  );
+}
+
 export default function Home() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <div 
-        className={`${inter.variable} ${playfair.variable}`}
-        style={{ 
-          minHeight: '100vh', 
-          background: '#1a5f5f', // Dark teal/green background
-        }}
-      >
-        <Header contact={cvData.contact} />
-        <BioSection bio={cvData.bio} contact={cvData.contact} />
-        <WorkExperienceSection experiences={cvData.workExperience} />
-        <SkillsSection skills={cvData.skills} />
-        <WorkExperienceSection experiences={cvData.workExperience} />
-        <EducationSection education={cvData.education} />
-        <Footer />
-      </div>
-    </ThemeProvider>
+    <LanguageProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <div 
+          className={`${inter.variable} ${playfair.variable}`}
+          style={{ 
+            minHeight: '100vh', 
+            background: '#1a5f5f', // Dark teal/green background
+          }}
+        >
+          <HomeContent />
+        </div>
+      </ThemeProvider>
+    </LanguageProvider>
   );
 }

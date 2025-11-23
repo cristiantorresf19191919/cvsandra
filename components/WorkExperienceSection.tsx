@@ -4,12 +4,15 @@ import { motion } from 'framer-motion';
 import { Box, Typography, Container, Paper } from '@mui/material';
 import { WorkExperience } from '@/types/cv';
 import WorkExperienceCard from './WorkExperienceCard';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface WorkExperienceSectionProps {
   experiences: WorkExperience[];
 }
 
 export default function WorkExperienceSection({ experiences }: WorkExperienceSectionProps) {
+  const { t } = useLanguage();
+  
   return (
     <Box
       sx={{
@@ -48,7 +51,7 @@ export default function WorkExperienceSection({ experiences }: WorkExperienceSec
                 fontFamily: 'var(--font-inter)',
               }}
             >
-              Work Experience
+              {t('workExperience')}
             </Typography>
 
             {experiences.map((experience, index) => (

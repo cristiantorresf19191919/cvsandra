@@ -3,12 +3,15 @@
 import { motion } from 'framer-motion';
 import { Box, Typography, Container, Paper } from '@mui/material';
 import { Skill } from '@/types/cv';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface SkillsSectionProps {
   skills: Skill[];
 }
 
 export default function SkillsSection({ skills }: SkillsSectionProps) {
+  const { t } = useLanguage();
+  
   return (
     <Box
       sx={{
@@ -29,8 +32,13 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
             sx={{
               p: { xs: 4, md: 5 },
               background: 'white',
-              borderRadius: 0,
-              boxShadow: 'none',
+              borderRadius: 2,
+              boxShadow: '0 2px 8px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04)',
+              border: '1px solid rgba(0,0,0,0.06)',
+              transition: 'all 0.3s ease',
+              '&:hover': {
+                boxShadow: '0 4px 16px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.06)',
+              },
             }}
           >
             <Typography
@@ -44,9 +52,20 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
                 fontSize: { xs: '1.25rem', md: '1.5rem' },
                 letterSpacing: '0.05em',
                 fontFamily: 'var(--font-inter)',
+                position: 'relative',
+                pb: 2,
+                '&::after': {
+                  content: '""',
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  width: '60px',
+                  height: '3px',
+                  background: '#e63946',
+                },
               }}
             >
-              Personal Skills
+              {t('personalSkills')}
             </Typography>
 
             {skills.map((skill, index) => (
@@ -60,26 +79,48 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
                   delay: index * 0.1,
                 }}
               >
-                <Box sx={{ mb: index < skills.length - 1 ? 4 : 0 }}>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      fontWeight: 600,
-                      color: '#1a202c',
-                      fontSize: '0.9375rem',
-                      mb: 1.5,
-                    }}
-                  >
-                    {skill.name}
-                  </Typography>
+                <Box 
+                  sx={{ 
+                    mb: index < skills.length - 1 ? 4 : 0,
+                    p: 2,
+                    borderRadius: 1,
+                    transition: 'all 0.2s ease',
+                    '&:hover': {
+                      background: '#f9fafb',
+                    },
+                  }}
+                >
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1.5 }}>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        fontWeight: 600,
+                        color: '#1a202c',
+                        fontSize: '0.9375rem',
+                      }}
+                    >
+                      {skill.name}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        fontWeight: 700,
+                        color: '#e63946',
+                        fontSize: '0.875rem',
+                      }}
+                    >
+                      {skill.level}%
+                    </Typography>
+                  </Box>
                   <Box sx={{ position: 'relative' }}>
                     <Box
                       sx={{
-                        height: '12px',
+                        height: '14px',
                         background: '#e5e7eb',
-                        borderRadius: 0,
+                        borderRadius: 1,
                         overflow: 'hidden',
                         position: 'relative',
+                        boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.1)',
                       }}
                     >
                       <motion.div
@@ -89,11 +130,13 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
                         transition={{ 
                           duration: 1.2, 
                           delay: index * 0.1 + 0.3,
+                          ease: 'easeOut',
                         }}
                         style={{
                           height: '100%',
-                          background: '#e63946', // Red fill
-                          borderRadius: 0,
+                          background: 'linear-gradient(90deg, #e63946 0%, #ff4757 100%)',
+                          borderRadius: 1,
+                          boxShadow: '0 2px 4px rgba(230, 57, 70, 0.3)',
                         }}
                       />
                     </Box>

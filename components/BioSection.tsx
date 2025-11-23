@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Box, Typography, Container, Paper } from '@mui/material';
 import { LocationOn, CalendarToday, Phone, Email } from '@mui/icons-material';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface BioSectionProps {
   bio: string;
@@ -14,6 +15,8 @@ interface BioSectionProps {
 }
 
 export default function BioSection({ bio, contact }: BioSectionProps) {
+  const { t } = useLanguage();
+  
   return (
     <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 } }}>
       <motion.div
@@ -27,8 +30,13 @@ export default function BioSection({ bio, contact }: BioSectionProps) {
           sx={{
             p: { xs: 4, md: 5 },
             background: 'white',
-            borderRadius: 0,
-            boxShadow: 'none',
+            borderRadius: 2,
+            boxShadow: '0 2px 8px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04)',
+            border: '1px solid rgba(0,0,0,0.06)',
+            transition: 'all 0.3s ease',
+            '&:hover': {
+              boxShadow: '0 4px 16px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.06)',
+            },
           }}
         >
           <Box sx={{ mb: 4 }}>
@@ -43,40 +51,151 @@ export default function BioSection({ bio, contact }: BioSectionProps) {
                 fontSize: { xs: '1.25rem', md: '1.5rem' },
                 letterSpacing: '0.05em',
                 fontFamily: 'var(--font-inter)',
+                position: 'relative',
+                pb: 2,
+                '&::after': {
+                  content: '""',
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  width: '60px',
+                  height: '3px',
+                  background: '#e63946',
+                },
               }}
             >
-              Personal Contact
+              {t('personalContact')}
             </Typography>
             
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <LocationOn sx={{ color: '#e63946', fontSize: '1.5rem' }} />
-                <Typography sx={{ color: '#1a202c', fontSize: '1rem' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
+              <Box 
+                sx={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: 2,
+                  p: 1.5,
+                  borderRadius: 1,
+                  transition: 'all 0.2s ease',
+                  '&:hover': {
+                    background: '#f9fafb',
+                  },
+                }}
+              >
+                <Box
+                  sx={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: '50%',
+                    background: '#e63946',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                  }}
+                >
+                  <LocationOn sx={{ color: 'white', fontSize: '1.25rem' }} />
+                </Box>
+                <Typography sx={{ color: '#1a202c', fontSize: '1rem', fontWeight: 500 }}>
                   {contact.location}
                 </Typography>
               </Box>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <CalendarToday sx={{ color: '#e63946', fontSize: '1.5rem' }} />
-                <Typography sx={{ color: '#1a202c', fontSize: '1rem' }}>
-                  Date of Birth
+              <Box 
+                sx={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: 2,
+                  p: 1.5,
+                  borderRadius: 1,
+                  transition: 'all 0.2s ease',
+                  '&:hover': {
+                    background: '#f9fafb',
+                  },
+                }}
+              >
+                <Box
+                  sx={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: '50%',
+                    background: '#e63946',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                  }}
+                >
+                  <CalendarToday sx={{ color: 'white', fontSize: '1.25rem' }} />
+                </Box>
+                <Typography sx={{ color: '#1a202c', fontSize: '1rem', fontWeight: 500 }}>
+                  {t('dateOfBirth')}
                 </Typography>
               </Box>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <Phone sx={{ color: '#e63946', fontSize: '1.5rem' }} />
-                <Typography sx={{ color: '#1a202c', fontSize: '1rem' }}>
+              <Box 
+                sx={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: 2,
+                  p: 1.5,
+                  borderRadius: 1,
+                  transition: 'all 0.2s ease',
+                  '&:hover': {
+                    background: '#f9fafb',
+                  },
+                }}
+              >
+                <Box
+                  sx={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: '50%',
+                    background: '#e63946',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                  }}
+                >
+                  <Phone sx={{ color: 'white', fontSize: '1.25rem' }} />
+                </Box>
+                <Typography sx={{ color: '#1a202c', fontSize: '1rem', fontWeight: 500 }}>
                   {contact.phone}
                 </Typography>
               </Box>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <Email sx={{ color: '#e63946', fontSize: '1.5rem' }} />
-                <Typography sx={{ color: '#1a202c', fontSize: '1rem' }}>
+              <Box 
+                sx={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: 2,
+                  p: 1.5,
+                  borderRadius: 1,
+                  transition: 'all 0.2s ease',
+                  '&:hover': {
+                    background: '#f9fafb',
+                  },
+                }}
+              >
+                <Box
+                  sx={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: '50%',
+                    background: '#e63946',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                  }}
+                >
+                  <Email sx={{ color: 'white', fontSize: '1.25rem' }} />
+                </Box>
+                <Typography sx={{ color: '#1a202c', fontSize: '1rem', fontWeight: 500 }}>
                   {contact.email}
                 </Typography>
               </Box>
             </Box>
           </Box>
 
-          <Box sx={{ mb: 4 }}>
+          <Box>
             <Typography
               variant="h4"
               component="h2"
@@ -88,15 +207,26 @@ export default function BioSection({ bio, contact }: BioSectionProps) {
                 fontSize: { xs: '1.25rem', md: '1.5rem' },
                 letterSpacing: '0.05em',
                 fontFamily: 'var(--font-inter)',
+                position: 'relative',
+                pb: 2,
+                '&::after': {
+                  content: '""',
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  width: '60px',
+                  height: '3px',
+                  background: '#e63946',
+                },
               }}
             >
-              About Me
+              {t('aboutMe')}
             </Typography>
             <Typography
               variant="body1"
               sx={{
                 fontSize: { xs: '0.9375rem', md: '1rem' },
-                lineHeight: 1.8,
+                lineHeight: 1.9,
                 color: '#4a5568',
                 fontWeight: 400,
               }}
