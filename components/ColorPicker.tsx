@@ -426,6 +426,7 @@ export default function ColorPicker() {
                         onClick={() => {
                           setPrimaryColor(preset.primary);
                           setSecondaryColor(preset.secondary);
+                          handleClose();
                         }}
                         sx={{
                           cursor: 'pointer',
