@@ -5,6 +5,7 @@ import { Box, Typography, Container, Paper } from '@mui/material';
 import { Skill } from '@/types/cv';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useColors } from '@/contexts/ColorContext';
+import { useTemplateStyles } from '@/hooks/useTemplateStyles';
 
 interface SkillsSectionProps {
   skills: Skill[];
@@ -13,12 +14,13 @@ interface SkillsSectionProps {
 export default function SkillsSection({ skills }: SkillsSectionProps) {
   const { t } = useLanguage();
   const { primaryColor, secondaryColor } = useColors();
+  const styles = useTemplateStyles();
   
   return (
     <Box
       sx={{
-        background: primaryColor,
-        py: { xs: 6, md: 8 },
+        background: styles.sectionBackground === 'solid' ? primaryColor : styles.sectionBackground === 'alternating' ? primaryColor : 'transparent',
+        py: styles.containerPadding,
         position: 'relative',
         transition: 'background 0.3s ease',
       }}
@@ -33,14 +35,19 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
           <Paper
             elevation={0}
             sx={{
-              p: { xs: 4, md: 5 },
-              background: 'white',
-              borderRadius: 2,
-              boxShadow: '0 2px 8px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04)',
-              border: '1px solid rgba(0,0,0,0.06)',
+              p: styles.cardPadding,
+              background: styles.cardBackground,
+              borderRadius: styles.cardBorderRadius,
+              boxShadow: styles.cardShadow,
+              border: styles.cardBorder,
               transition: 'all 0.3s ease',
               '&:hover': {
-                boxShadow: '0 4px 16px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.06)',
+                transform: styles.hoverEffect,
+                boxShadow: styles.cardStyle === 'elevated' 
+                  ? '0 4px 16px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.06)'
+                  : styles.cardStyle === 'gradient'
+                  ? '0 12px 40px rgba(0,0,0,0.15)'
+                  : '0 2px 8px rgba(0,0,0,0.1)',
               },
             }}
           >
@@ -51,9 +58,9 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
                 fontWeight: 700,
                 mb: 4,
                 color: '#1a202c',
-                textTransform: 'uppercase',
-                fontSize: { xs: '1.25rem', md: '1.5rem' },
-                letterSpacing: '0.05em',
+                textTransform: styles.headingTransform,
+                fontSize: styles.headingFontSize,
+                letterSpacing: styles.headingLetterSpacing,
                 fontFamily: 'var(--font-inter)',
                 position: 'relative',
                 pb: 2,
@@ -62,9 +69,10 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
                   position: 'absolute',
                   bottom: 0,
                   left: 0,
-                  width: '60px',
-                  height: '3px',
+                  width: styles.accentLineWidth,
+                  height: styles.accentLineHeight,
                   background: secondaryColor,
+                  borderRadius: styles.template === 'creative' ? 2 : 0,
                 },
               }}
             >

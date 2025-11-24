@@ -5,6 +5,7 @@ import { Box, Typography, Container, Paper } from '@mui/material';
 import { Education } from '@/types/cv';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useColors } from '@/contexts/ColorContext';
+import { useTemplateStyles } from '@/hooks/useTemplateStyles';
 
 interface EducationSectionProps {
   education: Education[];
@@ -13,12 +14,13 @@ interface EducationSectionProps {
 export default function EducationSection({ education }: EducationSectionProps) {
   const { t } = useLanguage();
   const { primaryColor, secondaryColor } = useColors();
+  const styles = useTemplateStyles();
   
   return (
     <Box
       sx={{
-        background: primaryColor,
-        py: { xs: 6, md: 8 },
+        background: styles.sectionBackground === 'solid' ? primaryColor : styles.sectionBackground === 'alternating' ? primaryColor : 'transparent',
+        py: styles.containerPadding,
         position: 'relative',
         transition: 'background 0.3s ease',
       }}
@@ -33,14 +35,19 @@ export default function EducationSection({ education }: EducationSectionProps) {
           <Paper
             elevation={0}
             sx={{
-              p: { xs: 4, md: 5 },
-              background: 'white',
-              borderRadius: 2,
-              boxShadow: '0 2px 8px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04)',
-              border: '1px solid rgba(0,0,0,0.06)',
+              p: styles.cardPadding,
+              background: styles.cardBackground,
+              borderRadius: styles.cardBorderRadius,
+              boxShadow: styles.cardShadow,
+              border: styles.cardBorder,
               transition: 'all 0.3s ease',
               '&:hover': {
-                boxShadow: '0 4px 16px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.06)',
+                transform: styles.hoverEffect,
+                boxShadow: styles.cardStyle === 'elevated' 
+                  ? '0 4px 16px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.06)'
+                  : styles.cardStyle === 'gradient'
+                  ? '0 12px 40px rgba(0,0,0,0.15)'
+                  : '0 2px 8px rgba(0,0,0,0.1)',
               },
             }}
           >
@@ -51,9 +58,9 @@ export default function EducationSection({ education }: EducationSectionProps) {
                 fontWeight: 700,
                 mb: 4,
                 color: '#1a202c',
-                textTransform: 'uppercase',
-                fontSize: { xs: '1.25rem', md: '1.5rem' },
-                letterSpacing: '0.05em',
+                textTransform: styles.headingTransform,
+                fontSize: styles.headingFontSize,
+                letterSpacing: styles.headingLetterSpacing,
                 fontFamily: 'var(--font-inter)',
                 position: 'relative',
                 pb: 2,
@@ -62,9 +69,10 @@ export default function EducationSection({ education }: EducationSectionProps) {
                   position: 'absolute',
                   bottom: 0,
                   left: 0,
-                  width: '60px',
-                  height: '3px',
+                  width: styles.accentLineWidth,
+                  height: styles.accentLineHeight,
                   background: secondaryColor,
+                  borderRadius: styles.template === 'creative' ? 2 : 0,
                 },
               }}
             >
@@ -85,12 +93,12 @@ export default function EducationSection({ education }: EducationSectionProps) {
                 <Paper
                   elevation={0}
                   sx={{
-                    p: { xs: 3, md: 4 },
-                    mb: 3,
-                    background: 'white',
-                    borderRadius: 2,
-                    border: '1px solid rgba(0,0,0,0.06)',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.03)',
+                    p: styles.cardPadding,
+                    mb: styles.cardGap,
+                    background: styles.cardBackground,
+                    borderRadius: styles.cardBorderRadius,
+                    border: styles.cardBorder,
+                    boxShadow: styles.cardShadow,
                     transition: 'all 0.3s ease',
                     position: 'relative',
                     overflow: 'hidden',
@@ -100,13 +108,17 @@ export default function EducationSection({ education }: EducationSectionProps) {
                       left: 0,
                       top: 0,
                       bottom: 0,
-                      width: '4px',
+                      width: styles.template === 'compact' ? '2px' : '4px',
                       background: secondaryColor,
                     },
                     '&:hover': {
-                      boxShadow: '0 4px 16px rgba(0,0,0,0.1), 0 8px 24px rgba(0,0,0,0.05)',
-                      transform: 'translateY(-2px)',
-                        borderColor: `${secondaryColor}33`,
+                      transform: styles.hoverEffect,
+                      boxShadow: styles.cardStyle === 'elevated' 
+                        ? '0 4px 16px rgba(0,0,0,0.1), 0 8px 24px rgba(0,0,0,0.05)'
+                        : styles.cardStyle === 'gradient'
+                        ? '0 12px 40px rgba(0,0,0,0.15)'
+                        : '0 2px 8px rgba(0,0,0,0.1)',
+                      borderColor: `${secondaryColor}33`,
                     },
                   }}
                 >
@@ -129,14 +141,18 @@ export default function EducationSection({ education }: EducationSectionProps) {
                         sx={{
                           fontWeight: 700,
                           color: '#1a202c',
-                          fontSize: { xs: '1rem', md: '1.125rem' },
-                          textTransform: 'uppercase',
+                          fontSize: styles.headingFontSize,
+                          textTransform: styles.headingTransform,
                           mb: 1,
                           fontFamily: 'var(--font-inter)',
-                          letterSpacing: '0.02em',
+                          letterSpacing: styles.headingLetterSpacing,
                         }}
                       >
-                        {edu.institution.toUpperCase()}
+                        {styles.headingTransform === 'uppercase' 
+                          ? edu.institution.toUpperCase() 
+                          : styles.headingTransform === 'capitalize'
+                          ? edu.institution
+                          : edu.institution}
                       </Typography>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 1.5, flexWrap: 'wrap' }}>
                         <Typography
@@ -169,8 +185,8 @@ export default function EducationSection({ education }: EducationSectionProps) {
                           variant="body2"
                           sx={{
                             color: '#4a5568',
-                            fontSize: '0.9375rem',
-                            lineHeight: 1.8,
+                            fontSize: styles.bodyFontSize,
+                            lineHeight: styles.bodyLineHeight,
                             fontWeight: 400,
                           }}
                         >

@@ -5,6 +5,7 @@ import { Box, Typography, Container, Paper } from '@mui/material';
 import { LocationOn, CalendarToday, Phone, Email } from '@mui/icons-material';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useColors } from '@/contexts/ColorContext';
+import { useTemplateStyles } from '@/hooks/useTemplateStyles';
 
 interface BioSectionProps {
   bio: string;
@@ -18,9 +19,10 @@ interface BioSectionProps {
 export default function BioSection({ bio, contact }: BioSectionProps) {
   const { t } = useLanguage();
   const { secondaryColor } = useColors();
+  const styles = useTemplateStyles();
   
   return (
-    <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 } }}>
+    <Container maxWidth="lg" sx={{ py: styles.containerPadding }}>
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -30,14 +32,19 @@ export default function BioSection({ bio, contact }: BioSectionProps) {
         <Paper
           elevation={0}
           sx={{
-            p: { xs: 4, md: 5 },
-            background: 'white',
-            borderRadius: 2,
-            boxShadow: '0 2px 8px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04)',
-            border: '1px solid rgba(0,0,0,0.06)',
+            p: styles.cardPadding,
+            background: styles.cardBackground,
+            borderRadius: styles.cardBorderRadius,
+            boxShadow: styles.cardShadow,
+            border: styles.cardBorder,
             transition: 'all 0.3s ease',
             '&:hover': {
-              boxShadow: '0 4px 16px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.06)',
+              transform: styles.hoverEffect,
+              boxShadow: styles.cardStyle === 'elevated' 
+                ? '0 4px 16px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.06)'
+                : styles.cardStyle === 'gradient'
+                ? '0 12px 40px rgba(0,0,0,0.15)'
+                : '0 2px 8px rgba(0,0,0,0.1)',
             },
           }}
         >
@@ -49,9 +56,9 @@ export default function BioSection({ bio, contact }: BioSectionProps) {
                 fontWeight: 700,
                 mb: 3,
                 color: '#1a202c',
-                textTransform: 'uppercase',
-                fontSize: { xs: '1.25rem', md: '1.5rem' },
-                letterSpacing: '0.05em',
+                textTransform: styles.headingTransform,
+                fontSize: styles.headingFontSize,
+                letterSpacing: styles.headingLetterSpacing,
                 fontFamily: 'var(--font-inter)',
                 position: 'relative',
                 pb: 2,
@@ -60,10 +67,11 @@ export default function BioSection({ bio, contact }: BioSectionProps) {
                   position: 'absolute',
                   bottom: 0,
                   left: 0,
-                  width: '60px',
-                  height: '3px',
+                  width: styles.accentLineWidth,
+                  height: styles.accentLineHeight,
                   background: secondaryColor,
                   transition: 'background 0.3s ease',
+                  borderRadius: styles.template === 'creative' ? 2 : 0,
                 },
               }}
             >
@@ -210,9 +218,9 @@ export default function BioSection({ bio, contact }: BioSectionProps) {
                 fontWeight: 700,
                 mb: 3,
                 color: '#1a202c',
-                textTransform: 'uppercase',
-                fontSize: { xs: '1.25rem', md: '1.5rem' },
-                letterSpacing: '0.05em',
+                textTransform: styles.headingTransform,
+                fontSize: styles.headingFontSize,
+                letterSpacing: styles.headingLetterSpacing,
                 fontFamily: 'var(--font-inter)',
                 position: 'relative',
                 pb: 2,
@@ -221,10 +229,11 @@ export default function BioSection({ bio, contact }: BioSectionProps) {
                   position: 'absolute',
                   bottom: 0,
                   left: 0,
-                  width: '60px',
-                  height: '3px',
+                  width: styles.accentLineWidth,
+                  height: styles.accentLineHeight,
                   background: secondaryColor,
                   transition: 'background 0.3s ease',
+                  borderRadius: styles.template === 'creative' ? 2 : 0,
                 },
               }}
             >
@@ -233,8 +242,8 @@ export default function BioSection({ bio, contact }: BioSectionProps) {
             <Typography
               variant="body1"
               sx={{
-                fontSize: { xs: '0.9375rem', md: '1rem' },
-                lineHeight: 1.9,
+                fontSize: styles.bodyFontSize,
+                lineHeight: styles.bodyLineHeight,
                 color: '#4a5568',
                 fontWeight: 400,
               }}

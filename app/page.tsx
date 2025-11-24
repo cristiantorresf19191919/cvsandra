@@ -5,6 +5,7 @@ import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
 import { Inter, Playfair_Display } from 'next/font/google';
 import { LanguageProvider, useLanguage } from '@/contexts/LanguageContext';
 import { ColorProvider, useColors } from '@/contexts/ColorContext';
+import { TemplateProvider } from '@/contexts/TemplateContext';
 import { getCvData } from '@/data/cvData';
 import Header from '@/components/Header';
 import BioSection from '@/components/BioSection';
@@ -14,6 +15,7 @@ import SkillsSection from '@/components/SkillsSection';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import LanguageToggle from '@/components/LanguageToggle';
+import Infographic from '@/components/Infographic';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -177,6 +179,7 @@ function HomeContent() {
     <>
       <Header contact={cvData.contact} />
       <BioSection bio={cvData.bio} contact={cvData.contact} />
+      <Infographic />
       <SkillsSection skills={cvData.skills} />
       <WorkExperienceSection experiences={cvData.workExperience} />
       <EducationSection education={cvData.education} />
@@ -190,11 +193,13 @@ function HomeContent() {
 export default function Home() {
   return (
     <ColorProvider>
-      <LanguageProvider>
-        <ThemeWrapper>
-          <HomeContent />
-        </ThemeWrapper>
-      </LanguageProvider>
+      <TemplateProvider>
+        <LanguageProvider>
+          <ThemeWrapper>
+            <HomeContent />
+          </ThemeWrapper>
+        </LanguageProvider>
+      </TemplateProvider>
     </ColorProvider>
   );
 }

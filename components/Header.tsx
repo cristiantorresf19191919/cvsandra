@@ -5,7 +5,9 @@ import { Box, Typography, Container, Avatar } from '@mui/material';
 import { ContactInfo } from '@/types/cv';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useColors } from '@/contexts/ColorContext';
+import { useTemplateStyles } from '@/hooks/useTemplateStyles';
 import ColorPicker from './ColorPicker';
+import TemplatePicker from './TemplatePicker';
 
 interface HeaderProps {
   contact: ContactInfo;
@@ -14,6 +16,36 @@ interface HeaderProps {
 export default function Header({ contact }: HeaderProps) {
   const { t } = useLanguage();
   const { primaryColor, secondaryColor } = useColors();
+  const styles = useTemplateStyles();
+  
+  const getHeaderDecoration = () => {
+    switch (styles.headerStyle) {
+      case 'minimal':
+        return { display: 'none' };
+      case 'bold':
+        return {
+          background: `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`,
+          opacity: 0.2,
+        };
+      case 'decorative':
+        return {
+          background: 'linear-gradient(135deg, transparent 0%, transparent 45%, white 45%, white 50%, transparent 50%)',
+          opacity: 0.15,
+        };
+      case 'artistic':
+        return {
+          background: `radial-gradient(circle at 20% 50%, ${secondaryColor}33 0%, transparent 50%),
+                      radial-gradient(circle at 80% 50%, ${secondaryColor}22 0%, transparent 50%),
+                      linear-gradient(135deg, transparent 0%, white 25%, white 30%, transparent 60%)`,
+          opacity: 0.25,
+        };
+      default:
+        return {
+          background: 'linear-gradient(135deg, transparent 0%, transparent 45%, white 45%, white 50%, transparent 50%)',
+          opacity: 0.15,
+        };
+    }
+  };
   
   return (
     <motion.div
@@ -26,7 +58,7 @@ export default function Header({ contact }: HeaderProps) {
           background: primaryColor,
           color: 'white',
           transition: 'background 0.3s ease',
-          py: { xs: 6, md: 8 },
+          py: styles.headerPadding,
           position: 'relative',
           overflow: 'hidden',
           '&::before': {
@@ -36,8 +68,7 @@ export default function Header({ contact }: HeaderProps) {
             left: 0,
             width: '100%',
             height: '100%',
-            background: 'linear-gradient(135deg, transparent 0%, transparent 45%, white 45%, white 50%, transparent 50%)',
-            opacity: 0.15,
+            ...getHeaderDecoration(),
             pointerEvents: 'none',
           },
         }}
@@ -64,14 +95,24 @@ export default function Header({ contact }: HeaderProps) {
                   sx={{
                     fontWeight: 700,
                     mb: 1,
-                    fontSize: { xs: '2.5rem', sm: '3.5rem', md: '4.5rem' },
-                    letterSpacing: '-0.02em',
+                    fontSize: styles.template === 'compact' 
+                      ? { xs: '2rem', sm: '2.5rem', md: '3rem' }
+                      : styles.template === 'modern'
+                      ? { xs: '3rem', sm: '4rem', md: '5rem' }
+                      : styles.template === 'creative'
+                      ? { xs: '3.5rem', sm: '4.5rem', md: '6rem' }
+                      : { xs: '2.5rem', sm: '3.5rem', md: '4.5rem' },
+                    letterSpacing: styles.template === 'compact' ? '-0.01em' : '-0.02em',
                     color: 'white',
-                    textTransform: 'uppercase',
+                    textTransform: styles.headingTransform === 'uppercase' ? 'uppercase' : 'none',
                     fontFamily: 'var(--font-inter)',
                   }}
                 >
-                  {contact.name.toUpperCase()}
+                  {styles.headingTransform === 'uppercase' 
+                    ? contact.name.toUpperCase() 
+                    : styles.headingTransform === 'capitalize'
+                    ? contact.name
+                    : contact.name}
                 </Typography>
                 <Typography
                   variant="h5"
@@ -79,9 +120,13 @@ export default function Header({ contact }: HeaderProps) {
                   sx={{
                     fontWeight: 400,
                     mb: 4,
-                    fontSize: { xs: '1rem', sm: '1.25rem', md: '1.5rem' },
-                    letterSpacing: '0.1em',
-                    textTransform: 'uppercase',
+                    fontSize: styles.template === 'compact'
+                      ? { xs: '0.875rem', sm: '1rem', md: '1.125rem' }
+                      : styles.template === 'creative'
+                      ? { xs: '1.25rem', sm: '1.5rem', md: '1.75rem' }
+                      : { xs: '1rem', sm: '1.25rem', md: '1.5rem' },
+                    letterSpacing: styles.template === 'compact' ? '0.05em' : '0.1em',
+                    textTransform: styles.headingTransform === 'uppercase' ? 'uppercase' : 'none',
                     color: 'white',
                     fontFamily: 'var(--font-inter)',
                   }}
@@ -211,14 +256,18 @@ export default function Header({ contact }: HeaderProps) {
             </motion.div>
           </Box>
           
-          {/* Color Picker Button */}
+          {/* Color Picker and Template Picker Buttons */}
           <Box
             sx={{
               position: 'absolute',
               top: { xs: 16, md: 24 },
               right: { xs: 16, md: 24 },
+              display: 'flex',
+              gap: 2,
+              alignItems: 'center',
             }}
           >
+            <TemplatePicker />
             <ColorPicker />
           </Box>
         </Container>

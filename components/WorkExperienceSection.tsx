@@ -6,6 +6,7 @@ import { WorkExperience } from '@/types/cv';
 import WorkExperienceCard from './WorkExperienceCard';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useColors } from '@/contexts/ColorContext';
+import { useTemplateStyles } from '@/hooks/useTemplateStyles';
 
 interface WorkExperienceSectionProps {
   experiences: WorkExperience[];
@@ -13,13 +14,14 @@ interface WorkExperienceSectionProps {
 
 export default function WorkExperienceSection({ experiences }: WorkExperienceSectionProps) {
   const { t } = useLanguage();
-  const { primaryColor } = useColors();
+  const { primaryColor, secondaryColor } = useColors();
+  const styles = useTemplateStyles();
   
   return (
     <Box
       sx={{
-        background: primaryColor,
-        py: { xs: 6, md: 8 },
+        background: styles.sectionBackground === 'solid' ? primaryColor : styles.sectionBackground === 'alternating' ? primaryColor : 'transparent',
+        py: styles.containerPadding,
         position: 'relative',
         transition: 'background 0.3s ease',
       }}
@@ -34,11 +36,12 @@ export default function WorkExperienceSection({ experiences }: WorkExperienceSec
           <Paper
             elevation={0}
             sx={{
-              p: { xs: 4, md: 5 },
-              background: 'white',
-              borderRadius: 0,
-              boxShadow: 'none',
-              mb: 4,
+              p: styles.cardPadding,
+              background: styles.cardBackground,
+              borderRadius: styles.cardBorderRadius,
+              boxShadow: styles.cardShadow,
+              border: styles.cardBorder === 'none' ? 'none' : styles.cardBorder,
+              mb: styles.cardGap,
             }}
           >
             <Typography
@@ -48,10 +51,22 @@ export default function WorkExperienceSection({ experiences }: WorkExperienceSec
                 fontWeight: 700,
                 mb: 4,
                 color: '#1a202c',
-                textTransform: 'uppercase',
-                fontSize: { xs: '1.25rem', md: '1.5rem' },
-                letterSpacing: '0.05em',
+                textTransform: styles.headingTransform,
+                fontSize: styles.headingFontSize,
+                letterSpacing: styles.headingLetterSpacing,
                 fontFamily: 'var(--font-inter)',
+                position: 'relative',
+                pb: 2,
+                '&::after': {
+                  content: '""',
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  width: styles.accentLineWidth,
+                  height: styles.accentLineHeight,
+                  background: secondaryColor,
+                  borderRadius: styles.template === 'creative' ? 2 : 0,
+                },
               }}
             >
               {t('workExperience')}
